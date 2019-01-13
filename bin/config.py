@@ -1,11 +1,22 @@
 #config.py
 import preprocessing
 
+
 mockConfig = {
     'API_KEY': '5cbc25b0',
     'BASE_URL': 'https://api.mockaroo.com/api/',
-    'ROW_COUNT': '10',
-    'GENERATE_TYPE': 'generate.json'
+    'ROW_COUNT': '100',
+    'FILE_COUNT': 10,
+    'GENERATE_TYPE': 'generate.csv',
+    'FILE_OUTPUT_PATH': '/Users/richbateman/Public/'
+}
+
+salesforceLogin = {
+    'username': 'rich.bateman@dev.ncino.com',
+    'password': 'Sgsb5572',
+    'token': 'GCpMh4OppfNdocb4v3QDJVR0f',
+    'client_id': 'Mockaroo-Load',
+    'domain': 'login'
 }
 
 relationshipConfig = {
