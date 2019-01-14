@@ -24,7 +24,7 @@ for i in range(cfg.mockConfig['FILE_COUNT']):
             decoded_content = download.content.decode('utf-8')
 
             cr = csv.reader(decoded_content.splitlines(), delimiter=',')
-            foutput = list(cr)
+             foutput = list(cr)
 
             open(cfg.mockConfig['FILE_OUTPUT_PATH'] + id_generator() + '.csv', 'w').write(decoded_content)
 
