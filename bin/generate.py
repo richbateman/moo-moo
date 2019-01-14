@@ -1,34 +1,38 @@
-import sys
+import sys, io
 
-import requests
-import csv
-import json
+import requests,csv,json,string,random
 import config as cfg
 
-SobjectConfig = sys.argv[1]
-generate_type = cfg.mockConfig['GENERATE_TYPE']
-file_type = generate_type.split('.')
 
-print(file_type[1])
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+
+SobjectConfig = sys.argv[1]
+
 func = getattr(cfg, SobjectConfig)
 
 parse_json = json.loads(func['FIELDS'])
 
-url = cfg.mockConfig['BASE_URL'] + generate_type + '?key=' + cfg.mockConfig['API_KEY'] + '&count=' + cfg.mockConfig['ROW_COUNT']
+url = cfg.mockConfig['BASE_URL'] + cfg.mockConfig['GENERATE_TYPE'] + '?key=' + cfg.mockConfig['API_KEY'] + '&count=' + cfg.mockConfig['ROW_COUNT']
 
-if 'json' in generate_type:
-    response = requests.post(url, json=parse_json)
-    json_data = json.loads(response.text)
-    print(json_data)
 
-elif 'csv' in generate_type:
-    with requests.Session() as s:
-        download = s.post(url, json=parse_json)
-        decoded_content = download.content.decode('utf-8')
+for i in range(cfg.mockConfig['FILE_COUNT']):
 
-        cr = csv.reader(decoded_content.splitlines(), delimiter=',')
-        my_list = list(cr)
-        for row in my_list:
-            print(row)
-else:
-    print("No File Type Defined")
+        with requests.Session() as s:
+            download = s.post(url, json=parse_json)
+            decoded_content = download.content.decode('utf-8')
+
+            cr = csv.reader(decoded_content.splitlines(), delimiter=',')
+             foutput = list(cr)
+
+            open(cfg.mockConfig['FILE_OUTPUT_PATH'] + id_generator() + '.csv', 'w').write(decoded_content)
+
+            #with open(cfg.mockConfig['FILE_OUTPUT_PATH'] + id_generator() + '.csv', 'wb') as fileOutput:
+              #  wr = csv.writer(fileOutput, quotechar="'", quoting=csv.QUOTE_ALL, lineterminator='\n')
+               # wr.writerow(cr)
+
+            for row in foutput:
+                    print(row)
+
+print(str(cfg.mockConfig['FILE_COUNT']) + ' files created.')
