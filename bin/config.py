@@ -5,8 +5,8 @@ import preprocessing
 mockConfig = {
     'API_KEY': '5cbc25b0',
     'BASE_URL': 'https://api.mockaroo.com/api/',
-    'ROW_COUNT': '100',
-    'FILE_COUNT': 10,
+    'ROW_COUNT': '20',
+    'FILE_COUNT': 2,
     'GENERATE_TYPE': 'generate.csv',
     'FILE_OUTPUT_PATH': '/Users/richbateman/Public/'
 }
@@ -38,67 +38,6 @@ relationshipConfig = {
       ],
       "selectionStyle": "random",
       "distribution": null,
-      "formula": ""
-    },
-    {
-      "name": "CreateContact",
-      "null_percentage": 0,
-      "type": "Custom List",
-      "values": [
-        "Yes",
-        "No"
-      ],
-      "selectionStyle": "random",
-      "distribution": [
-        {
-          "rule": "field(\\\"LLC_BI__Active__c\\\") == \\\"Yes\\\"",
-          "frequencies": {
-            "Yes": 1,
-            "No": "0"
-          }
-        },
-        {
-          "rule": "field(\\\"LLC_BI__Active__c\\\") == \\\"No\\\"",
-          "frequencies": {
-            "Yes": "0",
-            "No": 1
-          }
-        }
-      ],
-      "formula": ""
-    },
-    {
-      "name": "BillingStreet",
-      "null_percentage": 0,
-      "type": "Street Address",
-      "formula": ""
-    },
-    {
-      "name": "BillingCity",
-      "null_percentage": 0,
-      "type": "City",
-      "formula": ""
-    },
-    {
-      "name": "BillingState",
-      "null_percentage": 0,
-      "type": "State (abbrev)",
-      "onlyUSPlaces": true,
-      "formula": ""
-    },
-    {
-      "name": "BillingZipCode",
-      "null_percentage": 0,
-      "type": "Postal Code",
-      "formula": ""
-    },
-    {
-      "name": "BillingCountry",
-      "null_percentage": 0,
-      "type": "Country",
-      "countries": [
-
-      ],
       "formula": ""
     },
     {
@@ -142,12 +81,6 @@ relationshipConfig = {
     },
     {
       "name": "LLC_BI__Reg_O_Relationship__c",
-      "null_percentage": 0,
-      "type": "Boolean",
-      "formula": ""
-    },
-    {
-      "name": "VIP_Customer__c",
       "null_percentage": 0,
       "type": "Boolean",
       "formula": ""
@@ -226,18 +159,6 @@ relationshipConfig = {
       "selectionStyle": "random",
       "distribution": null,
       "formula": "if field('LLC_BI__Active__c') == 'Yes' then this else nil end"
-    },
-    {
-      "name": "Email",
-      "null_percentage": 0,
-      "type": "Email Address",
-      "formula": "this.gsub(/\\\\.([\\\\w]+)$/, '.\\\\\\\\1.fake')"
-    },
-    {
-      "name": "LastName",
-      "null_percentage": 0,
-      "type": "Last Name",
-      "formula": ""
     },
     {
       "name": "LLC_BI__Partnership_Type__c",
@@ -447,15 +368,6 @@ relationshipConfig = {
       ],
       "selectionStyle": "random",
       "distribution": null,
-      "formula": ""
-    },
-    {
-      "name": "Frequency",
-      "null_percentage": 0,
-      "type": "Number",
-      "min": 1,
-      "max": 100,
-      "decimals": 0,
       "formula": ""
     }
   ]'''

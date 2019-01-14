@@ -1,12 +1,7 @@
-import sys
+import sys, io
 
-import requests
-import csv
-import json
+import requests,csv,json,string,random
 import config as cfg
-
-import string
-import random
 
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
@@ -24,16 +19,20 @@ url = cfg.mockConfig['BASE_URL'] + cfg.mockConfig['GENERATE_TYPE'] + '?key=' + c
 
 for i in range(cfg.mockConfig['FILE_COUNT']):
 
-
         with requests.Session() as s:
             download = s.post(url, json=parse_json)
             decoded_content = download.content.decode('utf-8')
 
             cr = csv.reader(decoded_content.splitlines(), delimiter=',')
             foutput = list(cr)
-            #for row in foutput:
-            with open(cfg.mockConfig['FILE_OUTPUT_PATH'] + id_generator() + '.csv', mode='w') as testOutput:
-                    testOutput = csv.writer(testOutput, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
-                    testOutput.writerow([foutput])
+
+            open(cfg.mockConfig['FILE_OUTPUT_PATH'] + id_generator() + '.csv', 'w').write(decoded_content)
+
+            #with open(cfg.mockConfig['FILE_OUTPUT_PATH'] + id_generator() + '.csv', 'wb') as fileOutput:
+              #  wr = csv.writer(fileOutput, quotechar="'", quoting=csv.QUOTE_ALL, lineterminator='\n')
+               # wr.writerow(cr)
+
+            for row in foutput:
+                    print(row)
 
 print(str(cfg.mockConfig['FILE_COUNT']) + ' files created.')
