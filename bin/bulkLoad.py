@@ -18,7 +18,7 @@ job.upload(
      'LLC_BI__Account_Review__c', 'LLC_BI__ActionFlag__c', 'LLC_BI__Automated_Financials__c', 'LLC_BI__Facility__c',
      'AccountNumber', 'NaicsCode', 'NaicsDesc', 'LLC_BI__Pod__c', 'LLC_BI__Region__c', 'LLC_BI__Review_Frequency__c'],
     [
-        ('Fedora Twist2', 'Yes', '3434', 'Sole Proprietorship', '264-57-1847', 'false', 'true', 'Agriculture', '47(244)840-9207', 'None', 'In Review', '', 'Hot', 'Other', 'Medium', 'Maybe', 'Gold', 'BX-119-d', 'Word of mouth', 'Managed directional archive', 'Yes', 'true', 'Leased', 'GY-544-h', '111110', ' Soybean farming, field and seed production ', 'Cypress', 'South', 'Semi-Annually'),
+        ('Fedora Twist4', 'Yes', '3434', 'Sole Proprietorship', '264-57-1847', 'false', 'true', 'Agriculture', '47(244)840-9207', 'None', 'In Review', '', 'Hot', 'Other', 'Medium', 'Maybe', 'Gold', 'BX-119-d', 'Word of mouth', 'Managed directional archive', 'Yes', 'true', 'Leased', 'GY-544-h', '111110', ' Soybean farming, field and seed production ', 'Cypress', 'South', 'Semi-Annually'),
         ('Fedora Twist3', 'Yes', '34343434', 'Sole Proprietorship',
          '264-57-1847', 'false', 'true', 'Agriculture', '47(244)840-9207', 'None', 'In Review', '', 'Hot', 'Other',
          'Medium', 'Maybe', 'Gold', 'BX-119-d', 'Word of mouth', 'Managed directional archive', 'Yes', 'true', 'Leased',

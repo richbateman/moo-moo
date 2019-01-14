@@ -5,10 +5,10 @@ import preprocessing
 mockConfig = {
     'API_KEY': '5cbc25b0',
     'BASE_URL': 'https://api.mockaroo.com/api/',
-    'ROW_COUNT': '20',
-    'FILE_COUNT': 2,
+    'ROW_COUNT': '5000',  #5k is Max for API call
+    'FILE_COUNT': 10,
     'GENERATE_TYPE': 'generate.csv',
-    'FILE_OUTPUT_PATH': '/Users/richbateman/Public/'
+    'FILE_OUTPUT_PATH': '/Users/richbateman/Documents/Python-DataLoad/'
 }
 
 salesforceLogin = {
