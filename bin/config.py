@@ -5,8 +5,8 @@ import preprocessing
 mockConfig = {
     'API_KEY': '5cbc25b0',
     'BASE_URL': 'https://api.mockaroo.com/api/',
-    'ROW_COUNT': '5000',  #5k is Max for API call
-    'FILE_COUNT': 10,
+    'ROW_COUNT': '10',  #5k is Max for API call
+    'FILE_COUNT': 2,
     'GENERATE_TYPE': 'generate.csv',
     'FILE_OUTPUT_PATH': '/Users/richbateman/Documents/Python-DataLoad/'
 }
@@ -377,15 +377,6 @@ contactConfig = {
     'SCHEMA': '',
     'FIELDS': '''[
     {
-      "name": "LLC_BI__Account__c",
-      "null_percentage": 0,
-      "type": "Dataset Column",
-      "dataset": "Account.LLC_BI__lookupKey__c",
-      "column": null,
-      "selectionStyle": "sequential",
-      "formula": ""
-    },
-    {
       "name": "Birthdate",
       "null_percentage": 0,
       "type": "Formula",
@@ -406,10 +397,16 @@ contactConfig = {
       "formula": ""
     },
     {
-      "name": "Name",
-      "null_percentage": 5,
-      "type": "Drug Name (Brand)",
-      "formula": "this + ' - Deposit'"
+      "name": "FirstName",
+      "null_percentage": 0,
+      "type": "First Name",
+      "formula": ""
+    },
+    {
+      "name": "LastName",
+      "null_percentage": 0,
+      "type": "Last Name",
+      "formula": ""
     },
     {
       "name": "Phone",
@@ -475,7 +472,7 @@ contactConfig = {
       "type": "Dataset Column",
       "dataset": "LLC_BI__Contact__c.LLC_BI__lookupKey__c",
       "column": null,
-      "selectionStyle": "sequential",
+      "selectionStyle": "random",
       "formula": ""
     },
     {
@@ -559,15 +556,6 @@ depositConfig = {
       ],
       "selectionStyle": "sequential",
       "distribution": null,
-      "formula": ""
-    },
-    {
-      "name": "LLC_BI__Account__c",
-      "null_percentage": 0,
-      "type": "Dataset Column",
-      "dataset": "Account.LLC_BI__lookupKey__c.2",
-      "column": "LLC_BI__lookupKey__c",
-      "selectionStyle": "sequential",
       "formula": ""
     },
     {
@@ -697,15 +685,6 @@ depositConfig = {
       "selectionStyle": "random",
       "distribution": null,
       "formula": ""
-    },
-    {
-      "name": "Frequency",
-      "null_percentage": 0,
-      "type": "Number",
-      "min": 1,
-      "max": 100,
-      "decimals": 0,
-      "formula": ""
     }
   ]'''
 }
@@ -714,7 +693,7 @@ legalEntitiesConfig = {
     'SCHEMA': '',
     'FIELDS': '''[
     {
-      "name": "AccountLookupKey",
+      "name": "LLC_BI__Account__c",
       "null_percentage": 0,
       "type": "Dataset Column",
       "dataset": "Account.LLC_BI__lookupKey__c",
@@ -723,7 +702,7 @@ legalEntitiesConfig = {
       "formula": ""
     },
     {
-      "name": "LoanLookupKey",
+      "name": "LLC_BI__Loan__c",
       "null_percentage": 0,
       "type": "Dataset Column",
       "dataset": "LLC_BI__Loan__c.LLC_BI__lookupKey__c",
@@ -732,7 +711,7 @@ legalEntitiesConfig = {
       "formula": ""
     },
     {
-      "name": "DepositLookupKey",
+      "name": "LLC_BI__Deposit__c",
       "null_percentage": 0,
       "type": "Dataset Column",
       "dataset": "LLC_BI__Deposit__c.LLC_BI__lookupKey__c",
@@ -741,7 +720,7 @@ legalEntitiesConfig = {
       "formula": "if this == 'LLC_BI__lookupKey__c' then random(1,50) else this end"
     },
     {
-      "name": "Borrower_Type",
+      "name": "LLC_BI__Borrower_Type__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -756,7 +735,7 @@ legalEntitiesConfig = {
       "formula": ""
     },
     {
-      "name": "Relationship_Type",
+      "name": "LLC_BI__Relationship_Type__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -769,7 +748,7 @@ legalEntitiesConfig = {
       "formula": ""
     },
     {
-      "name": "Ownership_Percentage",
+      "name": "LLC_BI__Ownership__c",
       "null_percentage": 0,
       "type": "Number",
       "min": 50,
@@ -802,7 +781,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Accrued_Interest",
+      "name": "LLC_BI__Accrued_Interest__c",
       "null_percentage": 0,
       "type": "Money",
       "min": 0,
@@ -811,7 +790,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Amount",
+      "name": "LLC_BI__Amount__c",
       "null_percentage": 0,
       "type": "Money",
       "min": 1000,
@@ -820,20 +799,13 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Closed_Date",
-      "null_percentage": 0,
-      "type": "Formula",
-      "value": "now() + years(2)",
-      "formula": "now() + years(2)"
-    },
-    {
-      "name": "Description",
+      "name": "LLC_BI__Description__c",
       "null_percentage": 0,
       "type": "Catch Phrase",
       "formula": ""
     },
     {
-      "name": "InterestRate",
+      "name": "LLC_BI__InterestRate__c",
       "null_percentage": 0,
       "type": "Number",
       "min": 1,
@@ -842,7 +814,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Last_Pay_Date",
+      "name": "LLC_BI__Last_Pay_Date__c",
       "null_percentage": 0,
       "type": "Formula",
       "value": "random(now()+days(-23), now()+days(-13))",
@@ -855,7 +827,7 @@ loanConfig = {
       "formula": "this + \\\"-Loan\\\""
     },
     {
-      "name": "Monthly_Payment",
+      "name": "LLC_BI__Monthly_Payment__c",
       "null_percentage": 0,
       "type": "Money",
       "min": 100,
@@ -864,21 +836,21 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Next_Payment_Due",
+      "name": "LLC_BI__Next_Payment_Due__c",
       "null_percentage": 0,
       "type": "Formula",
       "value": "random(now()+days(+23), now()+days(+13))",
       "formula": ""
     },
     {
-      "name": "Principal_Balance",
+      "name": "LLC_BI__Principal_Balance__c",
       "null_percentage": 0,
       "type": "Formula",
       "value": "field(\\\"Amount\\\").to_f - (field(\\\"Monthly_Payment\\\").to_f * random(1,2))",
       "formula": ""
     },
     {
-      "name": "Product_Line",
+      "name": "LLC_BI__Product_Line__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -896,7 +868,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Product_Type",
+      "name": "LLC_BI__Product_Type__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -915,7 +887,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Product",
+      "name": "LLC_BI__Product__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -941,7 +913,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Risk_Grade",
+      "name": "LLC_BI__Risk_Grade__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -967,7 +939,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Stage",
+      "name": "LLC_BI__Stage__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -987,7 +959,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Status",
+      "name": "LLC_BI__Status__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -1136,7 +1108,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Pricing_Basis",
+      "name": "LLC_BI__Pricing_Basis__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -1148,7 +1120,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Index",
+      "name": "LLC_BI__Index__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -1162,7 +1134,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Payment_Schedule",
+      "name": "LLC_BI__Payment_Schedule__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -1180,7 +1152,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "LeadSource",
+      "name": "LLC_BI__LeadSource__c	",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -1202,7 +1174,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "Legal_Firm",
+      "name": "LLC_BI__Legal_Firm__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -1216,15 +1188,6 @@ loanConfig = {
       ],
       "selectionStyle": "random",
       "distribution": null,
-      "formula": ""
-    },
-    {
-      "name": "Frequency",
-      "null_percentage": 0,
-      "type": "Number",
-      "min": 1,
-      "max": 100,
-      "decimals": 0,
       "formula": ""
     }
   ]'''

@@ -1,11 +1,12 @@
-import sys, io, requests,csv,json, string
-
+import sys, io, requests,csv,json, string, os, collections
 import config as cfg
-
-#def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
- #   return ''.join(random.choice(chars) for _ in range(size))
-
 from function import id_generator
+
+
+csv.register_dialect('myDialect',
+    delimiter = ',',
+    quotechar="'",
+    quoting=csv.QUOTE_ALL)
 
 SobjectConfig = sys.argv[1]
 
@@ -17,23 +18,24 @@ url = cfg.mockConfig['BASE_URL'] + cfg.mockConfig['GENERATE_TYPE'] + '?key=' + c
 
 for i in range(cfg.mockConfig['FILE_COUNT']):
 
-        with requests.Session() as s:
+    fileName = id_generator()
+
+    with requests.Session() as s:
             download = s.post(url, json=parse_json)
             decoded_content = download.content.decode('utf-8')
 
-            cr = csv.reader(decoded_content.splitlines(), delimiter=',')
-            foutput = list(cr)
+            #cr = csv.reader(decoded_content.splitlines(), delimiter=',', quotechar="'")
+            #foutput = list(cr)
 
-            open(cfg.mockConfig['FILE_OUTPUT_PATH'] + id_generator() + '.csv', 'w').write(decoded_content)
+            #open(cfg.mockConfig['FILE_OUTPUT_PATH'] + fileName + '.csv', 'w').write(decoded_content, dialect=QUOTE_ALL)
 
-            if i != 0:
-                print(str(i) + ' file(s) created.')
+            with open(cfg.mockConfig['FILE_OUTPUT_PATH'] + fileName + '.csv', 'w') as f:
+                writer = csv.writer(f, dialect='myDialect')
+                reader = csv.reader(decoded_content.splitlines())
 
-            #with open(cfg.mockConfig['FILE_OUTPUT_PATH'] + id_generator() + '.csv', 'wb') as fileOutput:
-              #  wr = csv.writer(fileOutput, quotechar="'", quoting=csv.QUOTE_ALL, lineterminator='\n')
-               # wr.writerow(cr)
+                for row in reader:
+                    writer.writerow(row)
 
-            #for row in foutput:
-             #       print(row)
+            os.system('python bulkLoad.py ' + cfg.mockConfig['FILE_OUTPUT_PATH'] + fileName + '.csv ' + SobjectConfig)
 
 print(str(cfg.mockConfig['FILE_COUNT']) + ' files created.')
