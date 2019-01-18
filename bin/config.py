@@ -5,7 +5,7 @@ import preprocessing
 mockConfig = {
     'API_KEY': '5cbc25b0',
     'BASE_URL': 'https://api.mockaroo.com/api/',
-    'ROW_COUNT': '100',  #5k is Max for API call
+    'ROW_COUNT': '5',  #5k is Max for API call
     'FILE_COUNT': 2,
     'GENERATE_TYPE': 'generate.csv',
     'FILE_OUTPUT_PATH': '/Users/richbateman/Documents/Python-DataLoad/'

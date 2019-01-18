@@ -75,3 +75,13 @@ Example:
 `
 ./python generate.py relationshipConfig
 `
+
+
+Python Packages Used
+===================
+
+salesforce-bulk-api
+simple-salesforce
+preprocessing
+requests
+requests-SSL-v3
