@@ -24,7 +24,7 @@ config.py
 |  | FILE_COUNT      |    Define the number of files you want to generate.  ROW_COUNT * FILE_COUNT gives you overall records to load |
 |  | GENERATE_TYPE      |    This should never change from default value of `generate.csv` |
 |  | FILE_OUTPUT_PATH      |    Writable path to store files generated and results |
-| salesforceLogin | instance      |    $1 |
+| salesforceLogin | instance      |    Value will be login.salesforce.com or test.salesforce.com |
 |  | isSandbox      |    Indicates instance as a Sandbox <True,False> |
 |  | username      |    Valid user of Salesforce instance |
 |  | password      |    Valid password of Salesforce instance |
@@ -52,7 +52,7 @@ mockConfig = {
 
 <pre><code>
 salesforceLogin = {
-    'instance': 'test.login.com',
+    'instance': 'test.salesforce.com',
     'isSandbox': 'True',
     'username': 'user@email.com',
     'password': 'password123',
