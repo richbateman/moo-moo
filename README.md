@@ -80,8 +80,10 @@ Example:
 Python Packages Used
 ===================
 
-salesforce-bulk-api
-simple-salesforce
-preprocessing
-requests
-requests-SSL-v3
+<ul>
+<li>salesforce-bulk-api</li>
+<li>simple-salesforce</li>
+<li>preprocessing</li>
+<li>requests</li>
+<li>requests-SSL-v3</li>
+</ul>
