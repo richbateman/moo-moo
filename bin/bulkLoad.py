@@ -2,34 +2,27 @@ import os, sys, csv, string
 import config as cfg
 from function import getfirstline,filetoprocess
 
-os.environ["SALESFORCE_INSTANCE"] = "login.salesforce.com"
-os.environ["SALESFORCE_SANDBOX"] = "False"
+csv.register_dialect('myDialect',
+    delimiter = ',',
+    quotechar='"',
+    quoting=csv.QUOTE_MINIMAL)
+
+os.environ["SALESFORCE_INSTANCE"] = cfg.salesforceLogin['instance']
+os.environ["SALESFORCE_SANDBOX"] = cfg.salesforceLogin['isSandbox']
 os.environ["SALESFORCE_USERNAME"] = cfg.salesforceLogin['username']
 os.environ["SALESFORCE_PASSWORD"] = cfg.salesforceLogin['password']
 os.environ["SALESFORCE_SECURITY_TOKEN"] = cfg.salesforceLogin['token']
 
 fileName = sys.argv[1]
 SobjectConfig = sys.argv[2]
-
-if SobjectConfig == 'relationshipConfig':
-    SobjectConfig = 'Account'
-elif SobjectConfig == 'contactConfig':
-    SobjectConfig = 'Contact'
-elif SobjectConfig == 'depositConfig':
-    SobjectConfig = 'LLC_BI__Deposit__c'
-else:
-    SobjectConfig = 'not set'
-
-print(SobjectConfig)
+func = getattr(cfg, SobjectConfig)
 
 from salesforce_bulk_api import SalesforceBulkJob
-
-job = SalesforceBulkJob('upsert', SobjectConfig, external_id_field='LLC_BI__lookupKey__c')
-
+job = SalesforceBulkJob(func['bulkJobType'], func['sobject'], external_id_field=func['external_id_field'])
 jobtorun = filetoprocess(fileName)
-
 exec(jobtorun)
 
-#delete file if successful
-if sys.exit() == 0:
-    os.remove(cfg.mockConfig['FILE_OUTPUT_PATH'] + fileName + '.csv ')
+theResult = list(job.results())
+with open(fileName + '.result', 'w') as myfile:
+    wr = csv.writer(myfile, dialect='myDialect')
+    wr.writerow(theResult)

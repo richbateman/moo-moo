@@ -5,21 +5,26 @@ import preprocessing
 mockConfig = {
     'API_KEY': '5cbc25b0',
     'BASE_URL': 'https://api.mockaroo.com/api/',
-    'ROW_COUNT': '10',  #5k is Max for API call
+    'ROW_COUNT': '100',  #5k is Max for API call
     'FILE_COUNT': 2,
     'GENERATE_TYPE': 'generate.csv',
     'FILE_OUTPUT_PATH': '/Users/richbateman/Documents/Python-DataLoad/'
 }
 
 salesforceLogin = {
-    'username': 'rich.bateman@dev.ncino.com',
-    'password': 'Sgsb5572',
-    'token': 'GCpMh4OppfNdocb4v3QDJVR0f',
+    'instance': 'test.login.com',
+    'isSandbox': 'True',
+    'username': 'chris.fernandez@qa.com.patch3',
+    'password': 'C65ra79s',
+    'token': 'mFEO9oFgI4JeulnGOM8wwKRjh',
     'client_id': 'Mockaroo-Load',
     'domain': 'login'
 }
 
 relationshipConfig = {
+    'sobject': 'Account',
+    'external_id_field': 'LLC_BI__lookupKey__c',
+    'bulkJobType': 'upsert',
     'SCHEMA': '',
     'FIELDS': '''[
     {
@@ -131,7 +136,7 @@ relationshipConfig = {
       "name": "Phone",
       "null_percentage": 0,
       "type": "Phone",
-      "format": "#-(###)###-####",
+      "format": "(###) ###-####",
       "formula": ""
     },
     {
@@ -312,7 +317,7 @@ relationshipConfig = {
       "formula": ""
     },
     {
-      "name": "NaicsCode",
+      "name": "LLC_BI__Naics_Code__c",
       "null_percentage": 0,
       "type": "Dataset Column",
       "dataset": "NaicsCodeDescript",
@@ -321,7 +326,7 @@ relationshipConfig = {
       "formula": "if field('Type') == 'Individual' then nil else this end"
     },
     {
-      "name": "NaicsDesc",
+      "name": "LLC_BI__NaicsDesc__c",
       "null_percentage": 0,
       "type": "Dataset Column",
       "dataset": "NaicsCodeDescript",
@@ -374,8 +379,20 @@ relationshipConfig = {
 }
 
 contactConfig = {
+    'sobject': 'Contact',
+    'external_id_field': 'LLC_BI__lookupKey__c',
+    'bulkJobType': 'upsert',
     'SCHEMA': '',
     'FIELDS': '''[
+    {
+      "name": "Account.LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "Account.LLC_BI__lookupKey__c",
+      "column": null,
+      "selectionStyle": "sequential",
+      "formula": ""
+    },
     {
       "name": "Birthdate",
       "null_percentage": 0,
@@ -499,8 +516,20 @@ contactConfig = {
 }
 
 depositConfig = {
+    'sobject': 'LLC_BI__Deposit__c',
+    'external_id_field': 'LLC_BI__lookupKey__c',
+    'bulkJobType': 'upsert',
     'SCHEMA': '',
     'FIELDS': '''[
+    {
+      "name": "LLC_BI__Account__r.LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "Account.LLC_BI__lookupKey__c",
+      "column": "Name",
+      "selectionStyle": "sequential",
+      "formula": ""
+    },
     {
       "name": "LLC_BI__Amount__c",
       "null_percentage": 0,
@@ -690,28 +719,31 @@ depositConfig = {
 }
 
 legalEntitiesConfig = {
+    'sobject': 'LLC_BI__Legal_Entities__c',
+    'external_id_field': '',
+    'bulkJobType': 'insert',
     'SCHEMA': '',
     'FIELDS': '''[
     {
-      "name": "LLC_BI__Account__c",
+      "name": "LLC_BI__Account__r.LLC_BI__lookupKey__c",
       "null_percentage": 0,
       "type": "Dataset Column",
       "dataset": "Account.LLC_BI__lookupKey__c",
-      "column": "Name",
-      "selectionStyle": "random",
+      "column": null,
+      "selectionStyle": "sequential",
       "formula": ""
     },
     {
-      "name": "LLC_BI__Loan__c",
+      "name": "LLC_BI__Loan__r.LLC_BI__lookupKey__c",
       "null_percentage": 0,
       "type": "Dataset Column",
       "dataset": "LLC_BI__Loan__c.LLC_BI__lookupKey__c",
       "column": "Name",
-      "selectionStyle": "random",
+      "selectionStyle": "sequential",
       "formula": ""
     },
     {
-      "name": "LLC_BI__Deposit__c",
+      "name": "LLC_BI__Deposit__r.LLC_BI__lookupKey__c",
       "null_percentage": 0,
       "type": "Dataset Column",
       "dataset": "LLC_BI__Deposit__c.LLC_BI__lookupKey__c",
@@ -760,15 +792,18 @@ legalEntitiesConfig = {
 }
 
 loanConfig = {
+    'sobject': 'LLC_BI__Loan__c',
+    'external_id_field': 'LLC_BI__lookupKey__c',
+    'bulkJobType': 'upsert',
     'SCHEMA': '',
     'FIELDS': '''[
     {
-      "name": "LLC_BI__Account__c",
+      "name": "LLC_BI__Account__r.LLC_BI__lookupKey__c",
       "null_percentage": 0,
       "type": "Dataset Column",
       "dataset": "Account.LLC_BI__lookupKey__c",
-      "column": "Name",
-      "selectionStyle": "random",
+      "column": null,
+      "selectionStyle": "sequential",
       "formula": ""
     },
     {
@@ -846,7 +881,7 @@ loanConfig = {
       "name": "LLC_BI__Principal_Balance__c",
       "null_percentage": 0,
       "type": "Formula",
-      "value": "field(\\\"Amount\\\").to_f - (field(\\\"Monthly_Payment\\\").to_f * random(1,2))",
+      "value": "field(\\\"LLC_BI__Amount__c\\\").to_f - (field(\\\"LLC_BI__Monthly_Payment__c\\\").to_f * random(1,2))",
       "formula": ""
     },
     {
@@ -1152,7 +1187,7 @@ loanConfig = {
       "formula": ""
     },
     {
-      "name": "LLC_BI__LeadSource__c	",
+      "name": "LLC_BI__LeadSource__c",
       "null_percentage": 0,
       "type": "Custom List",
       "values": [
@@ -1189,6 +1224,6 @@ loanConfig = {
       "selectionStyle": "random",
       "distribution": null,
       "formula": ""
-    }
+    } 
   ]'''
 }
