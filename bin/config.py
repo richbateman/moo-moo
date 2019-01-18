@@ -17,8 +17,7 @@ salesforceLogin = {
     'username': 'chris.fernandez@qa.com.patch3',
     'password': 'C65ra79s',
     'token': 'mFEO9oFgI4JeulnGOM8wwKRjh',
-    'client_id': 'Mockaroo-Load',
-    'domain': 'login'
+    'client_id': 'Mockaroo-Load'
 }
 
 relationshipConfig = {
