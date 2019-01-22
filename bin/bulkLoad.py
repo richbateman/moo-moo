@@ -22,6 +22,7 @@ job = SalesforceBulkJob(func['bulkJobType'], func['sobject'], external_id_field=
 jobtorun = filetoprocess(fileName)
 exec(jobtorun)
 
+#create and save result file to be used in downstream calls
 theResult = list(job.results())
 with open(fileName + '.result', 'w') as myfile:
     wr = csv.writer(myfile, dialect='myDialect')

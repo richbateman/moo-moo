@@ -1,6 +1,4 @@
-#config.py
 import preprocessing
-
 
 mockConfig = {
     'API_KEY': '5cbc25b0',
