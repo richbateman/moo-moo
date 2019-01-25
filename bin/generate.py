@@ -15,11 +15,11 @@ url = cfg.mockConfig['BASE_URL'] + cfg.mockConfig['GENERATE_TYPE'] + '?key=' + c
 for i in range(cfg.mockConfig['FILE_COUNT']):
     func = getattr(cfg, SobjectConfig)
 
+# Read json schema from file to build csv to load into SF
     with open('../schema/' + func['SCHEMA']) as f:
         parse_json = json.load(f)
 
-    #parse_json = json.loads(func['FIELDS'])
-
+# Generate unique file name for the CSV generated from Mockaroo
     fileName = id_generator()
 
     with requests.Session() as s:
@@ -35,11 +35,11 @@ for i in range(cfg.mockConfig['FILE_COUNT']):
 
             os.system('python bulkLoad.py ' + cfg.mockConfig['FILE_OUTPUT_PATH'] + fileName + '.csv ' + SobjectConfig)
 
-            #delete file regardless of result
+            # delete file regardless of result
             os.remove(cfg.mockConfig['FILE_OUTPUT_PATH'] + fileName + '.csv')
 
-#print to console result
-#will eventual upload results to Mockaroo as DataSet to be used in subsequent calls.
+# print to console result
+# will eventual upload results to Mockaroo as DataSet to be used in subsequent calls.
     f = open(cfg.mockConfig['FILE_OUTPUT_PATH'] + fileName + '.csv.result')
     with f:
         reader = csv.reader(f)
