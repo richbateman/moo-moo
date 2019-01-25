@@ -1,0 +1,350 @@
+[
+    {
+      "name": "Name",
+      "null_percentage": 0,
+      "type": "Full Name",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Active__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Yes",
+        "No"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "Account.LLC_BI__lookupKey__c",
+      "column": "LLC_BI__Account__c",
+      "selectionStyle": "sequential",
+      "formula": ""
+    },
+    {
+      "name": "Type",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Sole Proprietorship ",
+        "Partnership ",
+        "Corporation ",
+        "Government ",
+        "Trust ",
+        "Association ",
+        "Limited Liability Company ",
+        "Individual"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Tax_Identification_Number__c",
+      "null_percentage": 0,
+      "type": "SSN",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Employee_Relationship__c",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Reg_O_Relationship__c",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": ""
+    },
+    {
+      "name": "Industry",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Agriculture",
+        "Apparel ",
+        "Banking ",
+        "Biotechnology ",
+        "Chemicals ",
+        "Communication ",
+        "Construction ",
+        "Consulting ",
+        "Eductation ",
+        "Electronics ",
+        "Energy ",
+        "Engineering ",
+        "Entertainment ",
+        "Environment ",
+        "Finance ",
+        "Food & Beverage ",
+        "Government ",
+        "Healthcare ",
+        "Hospitality ",
+        "Insurance ",
+        "Machinery ",
+        "Manufacturing ",
+        "Media ",
+        "Not for Profit ",
+        "Other ",
+        "Recreation ",
+        "Retail ",
+        "Shipping ",
+        "Technology ",
+        "Telecommunications ",
+        "Transportation ",
+        "Utilities"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": "if field('Type') == 'Individual' then nil else this end"
+    },
+    {
+      "name": "Phone",
+      "null_percentage": 0,
+      "type": "Phone",
+      "format": "(###) ###-####",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Status__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Prospect ",
+        "Customer ",
+        "None ",
+        "Referral Source"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Review_Status__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "In Review",
+        "Complete"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": "if field('LLC_BI__Active__c') == 'Yes' then this else nil end"
+    },
+    {
+      "name": "LLC_BI__Partnership_Type__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "General Partnership ",
+        "Limited Partnership ",
+        "Limited Liability Partnership"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": "if field('Type') == 'Partnership' then this else nil end"
+    },
+    {
+      "name": "Rating",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Hot ",
+        "Warm ",
+        "Cold"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "Ownership",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Public ",
+        "Private ",
+        "Subsidiary ",
+        "Other"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__CustomerPriority__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "High",
+        "Low",
+        "Medium"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__UpsellOpportunity__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Maybe",
+        "No",
+        "Yes"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__SLA__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Platinum ",
+        "Gold ",
+        "Silver ",
+        "Bronze"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__SLASerialNumber__c",
+      "null_percentage": 0,
+      "type": "Regular Expression",
+      "value": "[:upper:]{2}-\\d{3}-[:lower:]{1}",
+      "formula": "if field('LLC_BI__SLA__c') == nil then nil else this end"
+    },
+    {
+      "name": "AccountSource",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Advertisement ",
+        "Employee Referral ",
+        "External Referral ",
+        "Partner ",
+        "Public Relations ",
+        "Seminar - Internal ",
+        "Seminar - Partner ",
+        "Trade Show ",
+        "Web ",
+        "Word of mouth ",
+        "Other"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Account_Review__c",
+      "null_percentage": 0,
+      "type": "Catch Phrase",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__ActionFlag__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Yes",
+        "No"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Automated_Financials__c",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Facility__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Owned",
+        "Leased"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "AccountNumber",
+      "null_percentage": 0,
+      "type": "Regular Expression",
+      "value": "[:upper:]{2}-\\d{3}-[:lower:]{1}",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Naics_Code__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "NaicsCodeDescript",
+      "column": "NAICS12",
+      "selectionStyle": "sequential",
+      "formula": "if field('Type') == 'Individual' then nil else this end"
+    },
+    {
+      "name": "LLC_BI__NaicsDesc__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "NaicsCodeDescript",
+      "column": " INDEX ITEM DESCRIPTION ",
+      "selectionStyle": null,
+      "formula": "if field('Type') == 'Individual' then nil else this end"
+    },
+    {
+      "name": "LLC_BI__Pod__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Dogwood",
+        "Cypress"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Region__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "North",
+        "East",
+        "South",
+        "West"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Review_Frequency__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Annually",
+        "Semi-Annually",
+        "Quarterly",
+        "Every 2 Months",
+        "Monthly"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    }
+  ]
