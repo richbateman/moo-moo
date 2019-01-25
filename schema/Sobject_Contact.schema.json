@@ -1,0 +1,130 @@
+[
+    {
+      "name": "Account.LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "Account.LLC_BI__lookupKey__c",
+      "column": null,
+      "selectionStyle": "sequential",
+      "formula": ""
+    },
+    {
+      "name": "Birthdate",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "random(now()+days(-9125), now()+days(-15000))",
+      "formula": ""
+    },
+    {
+      "name": "Email",
+      "null_percentage": 0,
+      "type": "Email Address",
+      "formula": "this.gsub(/\\.([\\w]+)$/, '.\\1.fake')"
+    },
+    {
+      "name": "MobilePhone",
+      "null_percentage": 5,
+      "type": "Phone",
+      "format": "#-(###)###-####",
+      "formula": ""
+    },
+    {
+      "name": "FirstName",
+      "null_percentage": 0,
+      "type": "First Name",
+      "formula": ""
+    },
+    {
+      "name": "LastName",
+      "null_percentage": 0,
+      "type": "Last Name",
+      "formula": ""
+    },
+    {
+      "name": "Phone",
+      "null_percentage": 5,
+      "type": "Phone",
+      "format": "#-(###)###-####",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Drivers_License__c",
+      "null_percentage": 5,
+      "type": "Regular Expression",
+      "value": "\\d{7}",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Employer_Name__c",
+      "null_percentage": 34,
+      "type": "Company Name",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Gender__c",
+      "null_percentage": 34,
+      "type": "Custom List",
+      "values": [
+        "Female",
+        "Male",
+        "Not Disclosed"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Home_City__c",
+      "null_percentage": 0,
+      "type": "City",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Home_State__c",
+      "null_percentage": 0,
+      "type": "State (abbrev)",
+      "onlyUSPlaces": true,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Home_Address__c",
+      "null_percentage": 0,
+      "type": "Street Address",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Home_Zipcode__c",
+      "null_percentage": 0,
+      "type": "Postal Code",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "LLC_BI__Contact__c.LLC_BI__lookupKey__c",
+      "column": null,
+      "selectionStyle": "random",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__SS__c",
+      "null_percentage": 0,
+      "type": "SSN",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Type__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Primary",
+        "Professional Contact",
+        "Referral Source",
+        "Other"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    }
+  ]

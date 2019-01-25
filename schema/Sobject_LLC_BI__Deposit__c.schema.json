@@ -1,0 +1,196 @@
+[
+    {
+      "name": "LLC_BI__Account__r.LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "Account.LLC_BI__lookupKey__c",
+      "column": "Name",
+      "selectionStyle": "sequential",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Amount__c",
+      "null_percentage": 0,
+      "type": "Money",
+      "min": 200,
+      "max": 5000,
+      "symbol": "none",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "LLC_BI__Deposit__c.LLC_BI__lookupKey__c",
+      "column": "Name",
+      "selectionStyle": "sequential",
+      "formula": ""
+    },
+    {
+      "name": "Name",
+      "null_percentage": 0,
+      "type": "Fake Company Name",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Product_Line__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Deposit"
+      ],
+      "selectionStyle": "sequential",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Product_Type__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Business Banking"
+      ],
+      "selectionStyle": "sequential",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Product__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Business Checking"
+      ],
+      "selectionStyle": "sequential",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Interest_Rate__c",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 1,
+      "max": 24,
+      "decimals": 3,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Initial_Deposit__c",
+      "null_percentage": 0,
+      "type": "Money",
+      "min": 100,
+      "max": 3000,
+      "symbol": "none",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Stage__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Qualification",
+        "Signature Signed",
+        "Active"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Status__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Open",
+        "Active",
+        "Closed",
+        "Dormant"
+      ],
+      "selectionStyle": "random",
+      "distribution": [
+        {
+          "rule": "field(\"LLC_BI__Stage__c\") == \"Qualification\"",
+          "frequencies": {
+            "Open": 1,
+            "Active": 1,
+            "Closed": 1,
+            "Dormant": 1
+          }
+        },
+        {
+          "rule": "field(\"LLC_BI__Stage__c\") == \"Signature Signed\"",
+          "frequencies": {
+            "Open": 1,
+            "Active": 1,
+            "Closed": 1,
+            "Dormant": 1
+          }
+        },
+        {
+          "rule": "field(\"LLC_BI__Stage__c\") == \"Active\"",
+          "frequencies": {
+            "Open": 1,
+            "Active": 1,
+            "Closed": 1,
+            "Dormant": 1
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Open_Date__c",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "random(now()+days(-42)+year(-2), now()+days(-3))",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Annual_Rent_Amount__c",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 1,
+      "max": 16,
+      "decimals": 2,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__APY__c",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 1,
+      "max": 14,
+      "decimals": 4,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Billing_Frequency__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Monthly",
+        "Quarterly",
+        "Semiannually",
+        "Annually",
+        "Biannually",
+        "Monthly on the lease date anniversary",
+        "Yearly on the lease date anniversary",
+        "Other"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Billing_Type__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Give Notice",
+        "Debit Account"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    }
+  ]

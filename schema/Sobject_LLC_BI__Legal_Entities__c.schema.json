@@ -1,0 +1,66 @@
+[
+    {
+      "name": "LLC_BI__Account__r.LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "Account.LLC_BI__lookupKey__c",
+      "column": null,
+      "selectionStyle": "sequential",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Loan__r.LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "LLC_BI__Loan__c.LLC_BI__lookupKey__c",
+      "column": "Name",
+      "selectionStyle": "sequential",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Deposit__r.LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "LLC_BI__Deposit__c.LLC_BI__lookupKey__c",
+      "column": "Name",
+      "selectionStyle": "sequential",
+      "formula": "if this == 'LLC_BI__lookupKey__c' then random(1,50) else this end"
+    },
+    {
+      "name": "LLC_BI__Borrower_Type__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Borrower ",
+        "Guarantor ",
+        "Limited Guarantor ",
+        "Co-Borrower ",
+        "Related Entity"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Relationship_Type__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Primary Owner ",
+        "Secondary Owner ",
+        "Joint Owner"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Ownership__c",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 50,
+      "max": 100,
+      "decimals": 0,
+      "formula": ""
+    }
+  ]

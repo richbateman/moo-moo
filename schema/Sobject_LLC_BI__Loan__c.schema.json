@@ -1,0 +1,430 @@
+[
+    {
+      "name": "LLC_BI__Account__r.LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "Account.LLC_BI__lookupKey__c",
+      "column": null,
+      "selectionStyle": "sequential",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__lookupKey__c",
+      "null_percentage": 0,
+      "type": "Dataset Column",
+      "dataset": "LLC_BI__Loan__c.LLC_BI__lookupKey__c",
+      "column": "Name",
+      "selectionStyle": "sequential",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Accrued_Interest__c",
+      "null_percentage": 0,
+      "type": "Money",
+      "min": 0,
+      "max": 1000,
+      "symbol": "none",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Amount__c",
+      "null_percentage": 0,
+      "type": "Money",
+      "min": 1000,
+      "max": 450000,
+      "symbol": "none",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Description__c",
+      "null_percentage": 0,
+      "type": "Catch Phrase",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__InterestRate__c",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 1,
+      "max": 24,
+      "decimals": 3,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Last_Pay_Date__c",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "random(now()+days(-23), now()+days(-13))",
+      "formula": ""
+    },
+    {
+      "name": "Name",
+      "null_percentage": 0,
+      "type": "Catch Phrase",
+      "formula": "this + \"-Loan\""
+    },
+    {
+      "name": "LLC_BI__Monthly_Payment__c",
+      "null_percentage": 0,
+      "type": "Money",
+      "min": 100,
+      "max": 1000,
+      "symbol": "none",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Next_Payment_Due__c",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "random(now()+days(+23), now()+days(+13))",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Principal_Balance__c",
+      "null_percentage": 0,
+      "type": "Formula",
+      "value": "field(\"LLC_BI__Amount__c\").to_f - (field(\"LLC_BI__Monthly_Payment__c\").to_f * random(1,2))",
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Product_Line__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Commercial"
+      ],
+      "selectionStyle": "sequential",
+      "distribution": [
+        {
+          "frequencies": {
+            "PL1": "1",
+            "Commercial": "2"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Product_Type__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Real Estate"
+      ],
+      "selectionStyle": "sequential",
+      "distribution": [
+        {
+          "rule": "field(\"LLC_BI__Product_Line__c\") == \"Commercial\"",
+          "frequencies": {
+            "PT1": 1,
+            "Real Estate": "2"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Product__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Construction"
+      ],
+      "selectionStyle": "sequential",
+      "distribution": [
+        {
+          "rule": "field(\"LLC_BI__Product_Line__c\") == \"Commercial\"",
+          "frequencies": {
+            "P1": 1,
+            "Construction": "2"
+          }
+        },
+        {
+          "rule": "field(\"LLC_BI__Product_Type__c\") == \"Real Estate\"",
+          "frequencies": {
+            "P1": 1,
+            "Construction": "2"
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Risk_Grade__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Stage__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Qualification ",
+        "Proposal ",
+        "Credit Underwriting  ",
+        "Processing ",
+        "Doc Prep ",
+        "Doc Review ",
+        "Closing ",
+        "Compliance ",
+        "Booked",
+        "Complete"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Status__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Open ",
+        "Hold ",
+        "Lost ",
+        "Declined ",
+        "Charge-Off ",
+        "Paid Out ",
+        "Withdrawn"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "rule": "field(\"Stage\") == \"Qualification\"",
+          "frequencies": {
+            "Open": "1",
+            "Hold": 1,
+            "Lost": 1,
+            "Declined": 1,
+            "Charge-Off": "0",
+            "Paid Out": "0",
+            "Withdrawn": 1
+          }
+        },
+        {
+          "rule": "field(\"Stage\") == \"Proposal\"",
+          "frequencies": {
+            "Open": 1,
+            "Hold": 1,
+            "Lost": 1,
+            "Declined": 1,
+            "Charge-Off": "0",
+            "Paid Out": "0",
+            "Withdrawn": 1
+          }
+        },
+        {
+          "rule": "field(\"Stage\") == \"Credit Underwriting\"",
+          "frequencies": {
+            "Open": 1,
+            "Hold": 1,
+            "Lost": 1,
+            "Declined": 1,
+            "Charge-Off": "0",
+            "Paid Out": "0",
+            "Withdrawn": 1
+          }
+        },
+        {
+          "rule": "field(\"Stage\") == \"Processing\"",
+          "frequencies": {
+            "Open": 1,
+            "Hold": 1,
+            "Lost": 1,
+            "Declined": 1,
+            "Charge-Off": "0",
+            "Paid Out": "0",
+            "Withdrawn": 1
+          }
+        },
+        {
+          "rule": "field(\"Stage\") == \"Doc Prep\"",
+          "frequencies": {
+            "Open": 1,
+            "Hold": 1,
+            "Lost": 1,
+            "Declined": 1,
+            "Charge-Off": "0",
+            "Paid Out": "0",
+            "Withdrawn": 1
+          }
+        },
+        {
+          "rule": "field(\"Stage\") == \"Doc Review\"",
+          "frequencies": {
+            "Open": 1,
+            "Hold": 1,
+            "Lost": 1,
+            "Declined": 1,
+            "Charge-Off": "0",
+            "Paid Out": "0",
+            "Withdrawn": 1
+          }
+        },
+        {
+          "rule": "field(\"Stage\") == \"Closing\"",
+          "frequencies": {
+            "Open": 1,
+            "Hold": 1,
+            "Lost": 1,
+            "Declined": 1,
+            "Charge-Off": "0",
+            "Paid Out": "0",
+            "Withdrawn": 1
+          }
+        },
+        {
+          "rule": "field(\"Stage\") == \"Compliance\"",
+          "frequencies": {
+            "Open": 1,
+            "Hold": 1,
+            "Lost": 1,
+            "Declined": 1,
+            "Charge-Off": "0",
+            "Paid Out": "0",
+            "Withdrawn": 1
+          }
+        },
+        {
+          "rule": "field(\"Stage\") == \"Booked\"",
+          "frequencies": {
+            "Open": 1,
+            "Hold": "0",
+            "Lost": "0",
+            "Declined": "0",
+            "Charge-Off": 1,
+            "Paid Out": 1,
+            "Withdrawn": 1
+          }
+        },
+        {
+          "rule": "field(\"Stage\") == \"Complete\"",
+          "frequencies": {
+            "Open": "0",
+            "Hold": 1,
+            "Lost": 1,
+            "Declined": 1,
+            "Charge-Off": 1,
+            "Paid Out": 1,
+            "Withdrawn": 1
+          }
+        },
+        {
+          "frequencies": {
+            "Open": 1,
+            "Hold": 1,
+            "Lost": 1,
+            "Declined": 1,
+            "Charge-Off": 1,
+            "Paid Out": 1,
+            "Withdrawn": 1
+          }
+        }
+      ],
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Pricing_Basis__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Variable",
+        "Fixed"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Index__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Prime ",
+        "Libor ",
+        "Treasury Constant Maturity - 10 Year + ",
+        "Treasury Constant Maturity - 5 Year +"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Payment_Schedule__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Weekly ",
+        "Bi-Weekly ",
+        "Semi-Monthly ",
+        "Monthly ",
+        "Bi-Monthly ",
+        "Quarterly ",
+        "Semi-Annual ",
+        "Annual"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__LeadSource__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Broker ",
+        "Industry Professional ",
+        "Trade Show ",
+        "Magazine ",
+        "Employee Referral ",
+        "Current Customer ",
+        "Association ",
+        "Email Campaign ",
+        "Prior Origination ",
+        "Direct Call ",
+        "Wholesaler ",
+        "Other"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "LLC_BI__Legal_Firm__c",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "Williams & Hayes",
+        "PLLC ",
+        "Raubenheimer & Partners ",
+        "Rivenbark & Associates ",
+        "Rhine Law Firm",
+        "P.C. ",
+        "Greg Jones Law"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    }
+  ]

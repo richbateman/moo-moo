@@ -15,7 +15,10 @@ url = cfg.mockConfig['BASE_URL'] + cfg.mockConfig['GENERATE_TYPE'] + '?key=' + c
 for i in range(cfg.mockConfig['FILE_COUNT']):
     func = getattr(cfg, SobjectConfig)
 
-    parse_json = json.loads(func['FIELDS'])
+    with open('../schema/' + func['SCHEMA']) as f:
+        parse_json = json.load(f)
+
+    #parse_json = json.loads(func['FIELDS'])
 
     fileName = id_generator()
 
