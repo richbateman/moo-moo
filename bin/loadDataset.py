@@ -1,6 +1,6 @@
 #ScriptName : Login.py
 #---------------------
-import time
+import time, os
 from function import id_generator
 from selenium import webdriver
 
@@ -24,7 +24,7 @@ xpaths = { 'usernameTxtBox': "//*[@id='user_email']",
 }
 
 cssSelector = {'uploadDataSetButton': "input.btn",
-               'uploadDataSetInputButton': "#new_list > div:nth-child(5) > div > div.bootstrap-filestyle.input-group > span > label"
+               'uploadDataSetInputButton': "#new_list > div:nth-child(5) > div > div.bootstrap-filestyle.input-group > input"
                }
 
 mydriver = webdriver.Chrome()
@@ -53,14 +53,17 @@ mydriver.get(dataSetUrl)
 mydriver.find_element_by_xpath(xpaths['dataSetFileName']).send_keys(fileName)
 
 #Set DataSet Filen to upload
-element = mydriver.find_element_by_css_selector(cssSelector['uploadDataSetInputButton']).click()
+#element = mydriver.find_element_by_css_selector(cssSelector['uploadDataSetInputButton']).click()
 time.sleep(5)
+
+mydriver.find_element_by_css_selector(cssSelector["uploadDataSetInputButton"]).send_keys(os.getcwd()+"/Users/richbateman/Python-DataLoad/38YHNIDA8JGE.csv.resultg")
+
 # element.send_keys("/Users/richbateman/Python-DataLoad/38YHNIDA8JGE.csv.result")
 # time.sleep(5)
 # mydriver.find_element_by_css_selector(cssSelector['uploadDataSetButton']).click()
 
 
-# condition = EC.visibility_of_element_located((By.CSS,
+# condition = EC.visibility_of_element_loca ted((By.CSS,
 #     "label[for='location_p'] + div ul.location-list > li"))
 #
 # first_option = WebDriverWait(driver, 15).until(condition)
