@@ -3,10 +3,14 @@ import preprocessing
 mockConfig = {
     'API_KEY': '5cbc25b0',
     'BASE_URL': 'https://api.mockaroo.com/api/',
-    'ROW_COUNT': '20',  #5k is Max for API call
-    'FILE_COUNT': 2,
+    'ROW_COUNT': '10',  #5k is Max for API call
+    'FILE_COUNT': 1,
     'GENERATE_TYPE': 'generate.csv',
-    'FILE_OUTPUT_PATH': '/Users/richbateman/Python-DataLoad/'
+    'FILE_OUTPUT_PATH': '/Users/richbateman/Python-DataLoad/',
+    'SIGNIN_URL': 'https://mockaroo.com/users/sign_in',
+    'DATASET_URL': 'https://mockaroo.com/lists/new',
+    'USER_NAME': 'rich.bateman@ncino.com',
+    'PASS_WORD': 'sgsb5572'
 }
 
 salesforceLogin = {

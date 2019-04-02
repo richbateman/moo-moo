@@ -20,10 +20,8 @@
     {
       "name": "LLC_BI__lookupKey__c",
       "null_percentage": 0,
-      "type": "Dataset Column",
-      "dataset": "Account.LLC_BI__lookupKey__c",
-      "column": "LLC_BI__Account__c",
-      "selectionStyle": "sequential",
+      "type": "Regular Expression",
+      "value": "[:upper:]{5}\\d{5}[:upper:]{5}\\d{20}",
       "formula": ""
     },
     {

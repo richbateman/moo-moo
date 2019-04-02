@@ -1,7 +1,6 @@
-import sys, io, requests,csv,json, string, os, collections
+import sys, io, requests, csv, json, string, os, collections
 import config as cfg
-from function import id_generator
-
+from function import *
 
 csv.register_dialect('myDialect',
     delimiter = ',',
@@ -22,6 +21,7 @@ for i in range(cfg.mockConfig['FILE_COUNT']):
 # Generate unique file name for the CSV generated from Mockaroo
     fileName = id_generator()
 
+# Generate mock data set to load into target salesforce org
     with requests.Session() as s:
             download = s.post(url, json=parse_json)
             decoded_content = download.content.decode('utf-8')
@@ -40,9 +40,5 @@ for i in range(cfg.mockConfig['FILE_COUNT']):
 
 # print to console result
 # will eventual upload results to Mockaroo as DataSet to be used in subsequent calls.
-    f = open(cfg.mockConfig['FILE_OUTPUT_PATH'] + fileName + '.csv.result')
-    with f:
-        reader = csv.reader(f)
-        for row in reader:
-            for e in row:
-                print(e)
+
+os.system('python loadDataset.py ' + fileName + ' ' + SobjectConfig)
